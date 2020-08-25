@@ -10,6 +10,7 @@ class MainContainer {
       deck: [],
       drawnCards: [],
       remainingCards: [],
+      drawItemPosition: 0,
     };
     this.initDeckState();
     //randomiseDeck();
@@ -54,7 +55,11 @@ class MainContainer {
     let lastCard = this.removeLastCardFromDeck();
 
     this.renderDeck();
-    this.state.drawnCards.push(lastCard);
+    if (this.state.drawItemPosition > 4) {
+      this.state.drawItemPosition = 0;
+    } else {
+      this.state.drawnCards[this.state.drawItemPosition++] = lastCard;
+    }
 
     let template = "";
     // let limiter = 0;
